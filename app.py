@@ -84,11 +84,6 @@ def make_chat_history_summary(chat_history, question):
 
     summary = complete(st.session_state.model_name, prompt)
 
-    if st.session_state.debug:
-        st.sidebar.text_area(
-            "Chat history summary", summary.replace("$", "\$"), height=150
-        )
-
     return summary
 
 def create_prompt(user_question):
