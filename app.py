@@ -170,7 +170,7 @@ def main():
         )
 
 if __name__ == "__main__":
-    session = get_active_session()
-    #session = Session.builder.configs(st.secrets.snowflake).create()
+    #session = get_active_session()
+    session = Session.builder.configs(st.secrets.snowflake).create()
     root = Root(session)
     main()
