@@ -1,10 +1,12 @@
 import streamlit as st
 from snowflake.core import Root # requires snowflake>=0.8.0
-from snowflake.snowpark.context import get_active_session
+#from snowflake.snowpark.context import get_active_session
 #from access_creds import connection_params
-#from snowflake.snowpark import Session
+from snowflake.snowpark import Session
 
-
+@st.cache_resource
+def create_session():
+    return Session.builder.configs(st.secrets.snowflake).create()
 
 MODELS = [
     "mistral-large"
@@ -169,6 +171,6 @@ def main():
 
 if __name__ == "__main__":
     session = get_active_session()
-    #session = Session.builder.configs(connection_params).create()
+    #session = Session.builder.configs(st.secrets.snowflake).create()
     root = Root(session)
     main()
